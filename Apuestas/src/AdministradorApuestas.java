@@ -98,8 +98,8 @@ public class AdministradorApuestas extends JFrame {
 		{
 			e.printStackTrace();
 		}// fin de catch	
-		
-		final Liga liga= new Liga((com.mysql.jdbc.Connection) conexion);//Crear objeto liga para que
+			//En el boton administrar me marca un error que me pide que cambie a final , final es que no se puede modificar?
+		 final Liga liga= new Liga((com.mysql.jdbc.Connection) conexion);//Crear objeto liga para que
 		
 		//caracteristicas panel principal
 		setBackground(new Color(0, 0, 153));
@@ -167,6 +167,7 @@ public class AdministradorApuestas extends JFrame {
 		});
 	
 		}
+	//Metodo para abrir ventana liga
 	private void openLigaWindow (Liga liga){
 		frameLiga=new VentanaLiga(liga);
 		frameLiga.setVisible(true);

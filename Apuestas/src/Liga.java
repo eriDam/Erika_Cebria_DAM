@@ -58,6 +58,7 @@ public class Liga implements Serializable{
 		 
 		return equipos.get(posicion);
 	}
+	//Metodo nuevo Equipo
 	public void newEquipo (){
 		equipos.add(new Equipo());
 		numEquipos++;
@@ -80,9 +81,24 @@ public class Liga implements Serializable{
 	}
 	
 	//Metodo para borrar equipo
-	public void deleteEquipo(int posicion) {
-		equipos.remove(posicion);
-	}
+	public void delEquipo(Equipo equipo) {
+		equipos.remove(equipo);
+		
+		try{
+		//consulta la bd
+		Statement del = (Statement)conexion.createStatement();
+		//Borrar en la bd
+		String sql_del="DELETE FROM equipos (idEquipo,idLiga,nombreEquipo,golesFavor,golesEnContra,partidosGanados,partidosPerdidos)";
+		
+		System.out.println(sql_del);//Para ver si borra
+		del.executeUpdate(sql_del);
+		}catch(SQLException exceptionSql){
+			exceptionSql.printStackTrace();
+		}
+}
+
+		
+	
 
 	//Generamos metodo leer liga
 	public void leerLiga() {

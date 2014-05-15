@@ -254,6 +254,6 @@ public class VentanaEquipo extends JFrame {
 	    		System.err.println("Error al crear la clase");
 			}
 	    	
-	    	
+//------------------------------Métod Borrar Equipo	    	
 	    }
 	    }
