@@ -13,6 +13,7 @@ import javax.swing.JTextField;
 import javax.swing.JRadioButton;
 import javax.swing.JButton;
 import javax.swing.ImageIcon;
+import javax.swing.JTabbedPane;
 
 public class Recetas extends JFrame {
 
@@ -26,18 +27,7 @@ public class Recetas extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Recetas frame = new Recetas();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	//public static void main(String[] args) {
 
 	/**
 	 * Create the frame.
@@ -110,8 +100,8 @@ public class Recetas extends JFrame {
 		textField.setColumns(10);
 		
 		JLabel lblFoto = new JLabel("");
-		lblFoto.setIcon(new ImageIcon("C:\\Users\\Eri\\git\\ErikaCebriaDam\\proyectoFinal\\src\\descarga.jpg"));
 		lblFoto.setBounds(188, 29, 246, 236);
+		lblFoto.setIcon(new ImageIcon("C:\\Users\\Eri\\git\\ErikaCebriaDam\\proyectoFinal\\src\\descarga.jpg"));
 		contentPane.add(lblFoto);
 		
 		JLabel lblN = new JLabel("N\u00BA");
@@ -119,8 +109,8 @@ public class Recetas extends JFrame {
 		contentPane.add(lblN);
 		
 		textFieldN = new JTextField();
-		textFieldN.setEditable(false);
 		textFieldN.setBounds(359, 8, 47, 20);
+		textFieldN.setEditable(false);
 		contentPane.add(textFieldN);
 		textFieldN.setColumns(10);
 	}
