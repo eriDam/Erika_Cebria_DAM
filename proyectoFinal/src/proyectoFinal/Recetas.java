@@ -6,8 +6,10 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
 import java.awt.Color;
 import java.awt.Toolkit;
+
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JRadioButton;
@@ -15,13 +17,12 @@ import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import javax.swing.JTabbedPane;
 
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
 public class Recetas extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textFieldNombre;
-	private JTextField textFieldIngredientes;
-	private JTextField textFieldPrecio;
-	private JTextField textField;
 	private JTextField textFieldN;
 
 	/**
@@ -43,66 +44,13 @@ public class Recetas extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNombre = new JLabel("Nombre");
-		lblNombre.setBounds(10, 11, 46, 14);
-		contentPane.add(lblNombre);
-		
-		textFieldNombre = new JTextField();
-		textFieldNombre.setBounds(10, 32, 154, 20);
-		contentPane.add(textFieldNombre);
-		textFieldNombre.setColumns(10);
-		
-		JLabel lblIngredientes = new JLabel("Ingredientes");
-		lblIngredientes.setBounds(10, 53, 77, 14);
-		contentPane.add(lblIngredientes);
-		
-		textFieldIngredientes = new JTextField();
-		textFieldIngredientes.setBounds(10, 78, 154, 20);
-		contentPane.add(textFieldIngredientes);
-		textFieldIngredientes.setColumns(10);
-		
-		JLabel lblPrecio = new JLabel("Precio");
-		lblPrecio.setBounds(10, 109, 46, 14);
-		contentPane.add(lblPrecio);
-		
-		textFieldPrecio = new JTextField();
-		textFieldPrecio.setBounds(10, 127, 154, 20);
-		contentPane.add(textFieldPrecio);
-		textFieldPrecio.setColumns(10);
-		
-		JLabel lblDificultad = new JLabel("Dificultad");
-		lblDificultad.setBounds(10, 158, 109, 14);
-		contentPane.add(lblDificultad);
-		
-		JRadioButton rdbtnNormal = new JRadioButton("Normal");
-		rdbtnNormal.setBounds(10, 208, 77, 23);
-		contentPane.add(rdbtnNormal);
-		
-		JRadioButton rdbtnComplicado = new JRadioButton("Complicado");
-		rdbtnComplicado.setBounds(6, 175, 161, 23);
-		contentPane.add(rdbtnComplicado);
-		
-		JButton btnGuardar = new JButton("Guardar");
-		btnGuardar.setBounds(117, 331, 89, 23);
+		JButton btnGuardar = new JButton("Listado");
+		btnGuardar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		btnGuardar.setBounds(10, 331, 111, 23);
 		contentPane.add(btnGuardar);
-		
-		JButton btnLimpiar = new JButton("Limpiar");
-		btnLimpiar.setBounds(228, 331, 89, 23);
-		contentPane.add(btnLimpiar);
-		
-		JLabel lblDescripcin = new JLabel("Descripci\u00F3n");
-		lblDescripcin.setBounds(10, 251, 109, 14);
-		contentPane.add(lblDescripcin);
-		
-		textField = new JTextField();
-		textField.setBounds(10, 284, 414, 46);
-		contentPane.add(textField);
-		textField.setColumns(10);
-		
-		JLabel lblFoto = new JLabel("");
-		lblFoto.setBounds(188, 29, 246, 236);
-		lblFoto.setIcon(new ImageIcon("C:\\Users\\Eri\\git\\ErikaCebriaDam\\proyectoFinal\\src\\descarga.jpg"));
-		contentPane.add(lblFoto);
 		
 		JLabel lblN = new JLabel("N\u00BA");
 		lblN.setBounds(320, 11, 29, 14);
@@ -113,5 +61,32 @@ public class Recetas extends JFrame {
 		textFieldN.setEditable(false);
 		contentPane.add(textFieldN);
 		textFieldN.setColumns(10);
+		
+		JButton btnVolverRecetarium = new JButton("Volver Recetarium");
+		btnVolverRecetarium.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				EventQueue.invokeLater(new Runnable() {
+					public void run() {
+						try {
+							Recetarium frame = new Recetarium();
+							frame.setVisible(true);
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+				});
+			}
+		});
+		btnVolverRecetarium.setBounds(139, 331, 145, 23);
+		contentPane.add(btnVolverRecetarium);
+		
+		JButton btnAadirReceta = new JButton("A\u00F1adir Receta");
+		btnAadirReceta.setBounds(294, 331, 130, 23);
+		contentPane.add(btnAadirReceta);
+		
+		JLabel label = new JLabel("");
+		label.setIcon(new ImageIcon("C:\\Users\\Eri\\git\\ErikaCebriaDam\\proyectoFinal\\src\\logo.jpg"));
+		label.setBounds(10, 0, 424, 179);
+		contentPane.add(label);
 	}
 }
