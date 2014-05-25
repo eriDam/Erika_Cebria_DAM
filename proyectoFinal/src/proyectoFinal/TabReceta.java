@@ -37,7 +37,7 @@ public class TabReceta extends JFrame {
 	 */
 	public TabReceta() {
 		setForeground(Color.WHITE);
-		setTitle("Recetas");
+		setTitle("Introducir recetas");
 		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\Eri\\git\\ErikaCebriaDam\\proyectoFinal\\src\\descarga.jpg"));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 494, 356);
