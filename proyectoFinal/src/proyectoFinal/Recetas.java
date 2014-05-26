@@ -1,92 +1,114 @@
 package proyectoFinal;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
+import java.sql.Connection;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
+public class Recetas {
+private int idReceta;
+private String nombre;
+private String ingredientes;
+private float precio;
+private String dificultad;
+private String descripcion;
+private String categoria;
 
-import java.awt.Color;
-import java.awt.Toolkit;
 
-import javax.swing.JLabel;
-import javax.swing.JTextField;
-import javax.swing.JRadioButton;
-import javax.swing.JButton;
-import javax.swing.ImageIcon;
-import javax.swing.JTabbedPane;
-
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-
-public class Recetas extends JFrame {
-
-	private JPanel contentPane;
-	private JTextField textFieldN;
-
-	/**
-	 * Launch the application.
-	 */
-	//public static void main(String[] args) {
-
-	/**
-	 * Create the frame.
-	 */
 	public Recetas() {
-		setTitle("Recetas");
-		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\Eri\\git\\ErikaCebriaDam\\proyectoFinal\\src\\descarga.jpg"));
-		setForeground(new Color(153, 153, 204));
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 403);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
-		
-		JButton btnGuardar = new JButton("Listado");
-		btnGuardar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
-		btnGuardar.setBounds(10, 331, 111, 23);
-		contentPane.add(btnGuardar);
-		
-		JLabel lblN = new JLabel("N\u00BA");
-		lblN.setBounds(320, 11, 29, 14);
-		contentPane.add(lblN);
-		
-		textFieldN = new JTextField();
-		textFieldN.setBounds(359, 8, 47, 20);
-		textFieldN.setEditable(false);
-		contentPane.add(textFieldN);
-		textFieldN.setColumns(10);
-		
-		JButton btnVolverRecetarium = new JButton("Volver Recetarium");
-		btnVolverRecetarium.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				EventQueue.invokeLater(new Runnable() {
-					public void run() {
-						try {
-							Recetarium frame = new Recetarium();
-							frame.setVisible(true);
-						} catch (Exception e) {
-							e.printStackTrace();
-						}
-					}
-				});
-			}
-		});
-		btnVolverRecetarium.setBounds(139, 331, 145, 23);
-		contentPane.add(btnVolverRecetarium);
-		
-		JButton btnAadirReceta = new JButton("A\u00F1adir Receta");
-		btnAadirReceta.setBounds(294, 331, 130, 23);
-		contentPane.add(btnAadirReceta);
-		
-		JLabel label = new JLabel("");
-		label.setIcon(new ImageIcon("C:\\Users\\Eri\\git\\ErikaCebriaDam\\proyectoFinal\\src\\logo.jpg"));
-		label.setBounds(10, 0, 424, 179);
-		contentPane.add(label);
+		// TODO Auto-generated constructor stub
 	}
-}
+	
+	
+		public Recetas(int idReceta,String nombre,String ingredientes,float precio,String dificultad,String descripcion,String categoria) {
+			// TODO Auto-generated constructor stub
+			
+			this.idReceta = idReceta;
+			this.nombre = nombre;
+			this.ingredientes=ingredientes;
+			this.precio=precio;
+			this.dificultad=dificultad;
+			this.descripcion=descripcion;
+			this.categoria=categoria;
+			
+		}
+		
+		public int getIdReceta() {
+			return idReceta;
+		}
+
+
+		public void setIdReceta(int idReceta) {
+			this.idReceta = idReceta;
+		}
+
+
+		public String getNombre() {
+			return nombre;
+		}
+
+
+		public void setNombre(String nombre) {
+			this.nombre = nombre;
+		}
+
+
+		public String getIngredientes() {
+			return ingredientes;
+		}
+
+
+		public void setIngredientes(String ingredientes) {
+			this.ingredientes = ingredientes;
+		}
+
+
+		public float getPrecio() {
+			return precio;
+		}
+
+
+		public void setPrecio(float precio) {
+			this.precio = precio;
+		}
+
+
+		public String getDificultad() {
+			return dificultad;
+		}
+
+
+		public void setDificultad(String dificultad) {
+			this.dificultad = dificultad;
+		}
+
+
+		public String getDescripcion() {
+			return descripcion;
+		}
+
+
+		public void setDescripcion(String descripcion) {
+			this.descripcion = descripcion;
+		}
+
+
+		public String getCategoria() {
+			return categoria;
+		}
+
+
+		public void setCategoria(String categoria) {
+			this.categoria = categoria;
+		}
+
+
+		public Recetas(Connection conexion){
+			
+		}
+		//Añado método String toString para que devuelva el nombre en el combobox
+		//hara que me muestre por pantalla el nombre
+		public String toString() {
+			return nombre;
+		}	 
+	}
+
+
+

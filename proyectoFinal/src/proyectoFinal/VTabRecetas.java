@@ -6,16 +6,22 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JComboBox;
 import javax.swing.JTabbedPane;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
+
 import java.awt.Toolkit;
 import java.awt.Color;
+
 import javax.swing.JButton;
 
-public class TabReceta extends JFrame {
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class VTabRecetas extends JFrame {
 	//Atributos
 	private JPanel contentPane;
 	private JTextField textFieldNomEnt;
@@ -33,12 +39,15 @@ public class TabReceta extends JFrame {
 	private JTextField txtEntrantes;
 	private JTextField txtPrimeros;
 	private JTextField txtPostres;
-
-
+	private JTextField textFieldIdreceta;
+	private JComboBox<Recetas> comboBox;
+	//Creamos objeto para llamar al método
+	ConexionDB f= new ConexionDB();
+	private JTextField textFieldDifEnt;
 	/**
 	 * Create the frame.
 	 */
-	public TabReceta() {
+	public VTabRecetas() {
 		setForeground(Color.WHITE);
 		setTitle("Introducir recetas");
 		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\Eri\\git\\ErikaCebriaDam\\proyectoFinal\\src\\descarga.jpg"));
@@ -115,6 +124,23 @@ public class TabReceta extends JFrame {
 		textFieldDesEnt.setColumns(10);
 		
 		JButton btnGuardar = new JButton("Guardar");
+		btnGuardar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				int idReceta= Integer.valueOf(Integer.parseInt(textFieldIdreceta.getText()));
+				String nombre=textFieldNomEnt.getText();
+				String ingredientes=textFieldIngrEnt.getText();
+				float precio= Float.valueOf(Float.parseFloat(textFieldPreEnt.getText()));
+				// String dificultad =rdbtnFcil.getText();//Como es radio button no se como cogerlo
+				String dificultad =textFieldDifEnt.getText();
+				String descripcion= textFieldDesEnt.getText();
+				String categoria=txtEntrantes.getText();
+				
+				 //Llamamos al metodo insertar Receta
+                f.insertarReceta(idReceta, nombre, ingredientes, precio, dificultad, descripcion, categoria, comboBox);
+               
+			}
+		});
 		btnGuardar.setBounds(325, 256, 89, 23);
 		panel.add(btnGuardar);
 		
@@ -129,6 +155,20 @@ public class TabReceta extends JFrame {
 		txtEntrantes.setBounds(66, 3, 86, 20);
 		panel.add(txtEntrantes);
 		txtEntrantes.setColumns(10);
+		
+		JLabel lblIdreceta = new JLabel("IdReceta");
+		lblIdreceta.setBounds(162, 6, 46, 14);
+		panel.add(lblIdreceta);
+		
+		textFieldIdreceta = new JTextField();
+		textFieldIdreceta.setBounds(219, 3, 32, 20);
+		panel.add(textFieldIdreceta);
+		textFieldIdreceta.setColumns(10);
+		
+		textFieldDifEnt = new JTextField();
+		textFieldDifEnt.setBounds(85, 164, 86, 20);
+		panel.add(textFieldDifEnt);
+		textFieldDifEnt.setColumns(10);
 		
 		JPanel panel_1 = new JPanel();
 		tabbedPane.addTab("Primeros", null, panel_1, null);
