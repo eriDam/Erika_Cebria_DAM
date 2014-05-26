@@ -2,7 +2,7 @@ package proyectoFinal;
 
 import java.sql.Connection;
 
-public class Recetas {
+public class Receta {
 private int idReceta;
 private String nombre;
 private String ingredientes;
@@ -12,12 +12,12 @@ private String descripcion;
 private String categoria;
 
 
-	public Recetas() {
+	public Receta() {
 		// TODO Auto-generated constructor stub
 	}
 	
 	
-		public Recetas(int idReceta,String nombre,String ingredientes,float precio,String dificultad,String descripcion,String categoria) {
+		public Receta(int idReceta,String nombre,String ingredientes,float precio,String dificultad,String descripcion,String categoria) {
 			// TODO Auto-generated constructor stub
 			
 			this.idReceta = idReceta;
@@ -100,7 +100,7 @@ private String categoria;
 		}
 
 
-		public Recetas(Connection conexion){
+		public Receta(Connection conexion){
 			
 		}
 		//Añado método String toString para que devuelva el nombre en el combobox

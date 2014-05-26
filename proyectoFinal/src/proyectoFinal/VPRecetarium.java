@@ -28,8 +28,8 @@ public class VPRecetarium extends JFrame {
 	private JPanel contentPane;
 	private JTextField textField;
 	private ConexionDB miConexion;
-	private JComboBox<Recetas> comboBoxR;
-	Recetas recetas=new Recetas();//Creo objeto para usar Recetas
+	private JComboBox<Receta> comboBoxR;
+	Receta recetas=new Receta();//Creo objeto para usar Recetas
 	/**
 	 * Launch the application.
 	 */
@@ -97,7 +97,7 @@ public class VPRecetarium extends JFrame {
 		
 		//Boton entrantes y su accion que llevará a abrir Recetas
 		JButton btnEntrantes = new JButton("Entrantes");
-		btnEntrantes.setBackground(new Color(153, 204, 102));
+		btnEntrantes.setBackground(new Color(153, 204, 51));
 		btnEntrantes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				EventQueue.invokeLater(new Runnable() {
@@ -117,7 +117,7 @@ public class VPRecetarium extends JFrame {
 		
 		//Botón Primeros que lleva a abrir Ventana Recetas con un Select * from recetas where categoria=primeros
 		JButton btnPlatosFros = new JButton("Primeros");
-		btnPlatosFros.setBackground(new Color(153, 204, 102));
+		btnPlatosFros.setBackground(new Color(153, 204, 51));
 		btnPlatosFros.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				EventQueue.invokeLater(new Runnable() {
@@ -138,7 +138,7 @@ public class VPRecetarium extends JFrame {
 		
 		//Botón Postres que lleva a abrir Ventana Recetas con un Select * from recetas where categoria=postres
 		JButton btnPlatosCalientes = new JButton("Postres");
-		btnPlatosCalientes.setBackground(new Color(153, 204, 102));
+		btnPlatosCalientes.setBackground(new Color(153, 204, 51));
 		btnPlatosCalientes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				EventQueue.invokeLater(new Runnable() {
@@ -164,7 +164,7 @@ public class VPRecetarium extends JFrame {
 		
 		//Boton buscar
 		JButton btnNewButton = new JButton("Buscar");
-		btnNewButton.setBackground(new Color(153, 204, 102));
+		btnNewButton.setBackground(new Color(153, 204, 51));
 		btnNewButton.setForeground(new Color(0, 0, 0));
 		btnNewButton.setIcon(null);
 		btnNewButton.addActionListener(new ActionListener() {
@@ -175,11 +175,12 @@ public class VPRecetarium extends JFrame {
 		panel.add(btnNewButton);
 		
 		//--------------------------------Combobox Recetas---------------------------------------------------------
-		JComboBox<Recetas> combobox= new JComboBox<Recetas>();
-		combobox.setBackground(new Color(102, 204, 51));
-		combobox.setBounds(10, 36, 199, 20);
-		//contentPane.add(Recetas);
-		combobox.addItem(new Recetas= 02, "panes", "agua",6,"media","cocer", "entrantes", comboBoxR);
+		
+		comboBoxR = new JComboBox<Receta>();
+		comboBoxR.setBackground(new Color(102, 204, 51));
+		comboBoxR.setBounds(23, 44, 175, 20);
+		contentPane.add(comboBoxR);
+		//comboBoxR.addItem(new Recetas= 02, "panes", "agua",6,"media","cocer", "entrantes", comboBoxR);
 		
 		
 		
@@ -193,5 +194,8 @@ public class VPRecetarium extends JFrame {
 		label.setBounds(0, -41, 434, 140);
 		contentPane.add(label);
 		label.setIcon(new ImageIcon("C:\\Users\\Eri\\git\\ErikaCebriaDam\\proyectoFinal\\src\\logo.jpg"));
+	
+		
+		miConexion.leerRecetas(comboBoxR);
 	}
 }

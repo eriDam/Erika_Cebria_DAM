@@ -40,7 +40,7 @@ public class VTabRecetas extends JFrame {
 	private JTextField txtPrimeros;
 	private JTextField txtPostres;
 	private JTextField textFieldIdreceta;
-	private JComboBox<Recetas> comboBox;
+	private JComboBox<Receta> comboBoxR;
 	//Creamos objeto para llamar al método
 	ConexionDB f= new ConexionDB();
 	private JTextField textFieldDifEnt;
@@ -137,7 +137,7 @@ public class VTabRecetas extends JFrame {
 				String categoria=txtEntrantes.getText();
 				
 				 //Llamamos al metodo insertar Receta
-                f.insertarReceta(idReceta, nombre, ingredientes, precio, dificultad, descripcion, categoria, comboBox);
+                f.insertarReceta(idReceta, nombre, ingredientes, precio, dificultad, descripcion, categoria, comboBoxR);
                
 			}
 		});

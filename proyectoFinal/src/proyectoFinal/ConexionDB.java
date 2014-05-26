@@ -1,4 +1,6 @@
 package proyectoFinal;
+
+
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -17,10 +19,6 @@ public class ConexionDB {
 	
 	
 	public ConexionDB() {
-		//Nos conectamos a la base de datos
-		crearConexion();
-	}
-	private void crearConexion(){
 		//conectamos a la BD
 		//hace una especie de import, la diferencia entre class for name e import es q
 		//podemos importar librerias y objetos de forma dinamica,cuando estamos ejecutando
@@ -56,7 +54,7 @@ public class ConexionDB {
 	//En este método leeremos de la base de datos las recetas existentes
 			// 1.- Leer de la base de datos
 			// 2.- Actualizar el combobox
-			public void leerRecetas(JComboBox listadoRecetas){
+			public void leerRecetas(JComboBox comboBoxR){
 				//Aquí realizaremos la consulta y actualización del combobox
 				// crea objeto Statement para consultar la base de datos
 				try
@@ -64,18 +62,17 @@ public class ConexionDB {
 					// Preparamos la consulta
 					Statement instruccion = (Statement) conexion.createStatement();	 
 					// Se realiza la consulta
-					resRecetas = instruccion.executeQuery ("SELECT nombre FROM recetas");		 
+					resRecetas = instruccion.executeQuery ("SELECT * FROM recetas");		 
 					// Bucle while para la consulta
 				while (resRecetas.next())//mientras existan filas
 				{
+					Receta nuevaReceta = new Receta(resRecetas.getInt("idReceta"),resRecetas.getString("nombre"),resRecetas.getString("ingredientes"),resRecetas.getFloat("precio"),resRecetas.getString("dificultad"),resRecetas.getString("descripcion"),resRecetas.getString("categoria"));
 					// Rellenar el combobox a partir de consulta
 					//Ultimo Paso Mostrar por pantalla
-					listadoRecetas.addItem (resRecetas.getObject("nombre"));
+					comboBoxR.addItem(nuevaReceta);
+					System.out.println("Receta Añadida: "+nuevaReceta);
 					
-					   //System.out.println("id Equipo="+conjuntoResultados.getObject("idEquipo")+"id Liga="+conjuntoResultados.getObject("idLiga")+
-					     //" nombre Equipo= "+conjuntoResultados.getObject("nombreEquipo") +" , goles a Favor= "+conjuntoResultados.getObject("golesFavor")+", golesEnContra= "+conjuntoResultados.getObject("golesEnContra")+", partidos Ganados= "+conjuntoResultados.getObject("partidosGanados")+", partidos Perdidos
-						//= "+conjuntoResultados.getObject("partidosPerdidos"));
-					System.out.println("La receta  es " +resRecetas.getObject("nombre")); 
+					  
 				}	
 				//conjuntoResultados.close();
 					} catch (Exception e){
@@ -84,7 +81,7 @@ public class ConexionDB {
 
 			}
 
-			
+		
 			public void insertarReceta(int idReceta,String nombre, String ingredientes, float precio,String dificultad,String  descripcion,String categoria,JComboBox listadoRecetas){
 				//Aquí realizaremos la consulta
 				//TabReceta nuevaReceta = new TabReceta (resRecetas.getInt("idReceta"),resRecetas.getString("nombre"),resRecetas.getFloat("precio"),resRecetas.getString("dificultad"),resRecetas.getString("descripcion"),resRecetas.getString("categoria"));
@@ -93,15 +90,16 @@ public class ConexionDB {
 					 instruccion = (Statement) conexion.createStatement();
 			            //Insertamos datos
 			            String insertBBDD = "INSERT INTO recetas (idReceta, nombre,ingredientes,precio,dificultad,descripcion,categoria)";    
-			            insertBBDD = insertBBDD + "VALUES ("+idReceta+",'"+nombre+"','"+ingredientes+"',"+precio+","+dificultad+",'"+descripcion+"','"+categoria+"' )";
+			            insertBBDD = insertBBDD + "VALUES ("+idReceta+",'"+nombre+"','"+ingredientes+"',"+precio+",'"+dificultad+"','"+descripcion+"','"+categoria+"' )";
 			    
 			            instruccion.executeUpdate(insertBBDD);
+			            //Actualización del combobox PENDIENTE
+				// comboBoxR.removeAllItems();
+				//leerRecetas(comboBoxR);
 			            }catch(SQLException excepcionSql ){
 			                excepcionSql.printStackTrace();    
 			            }
-				//Actualización del combobox
-				listadoRecetas.removeAllItems();
-				leerRecetas(listadoRecetas);
+				
 			}
 
 }
