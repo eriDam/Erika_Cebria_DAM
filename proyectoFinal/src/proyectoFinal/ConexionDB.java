@@ -94,8 +94,8 @@ public class ConexionDB {
 			    
 			            instruccion.executeUpdate(insertBBDD);
 			            //Actualización del combobox PENDIENTE
-				// comboBoxR.removeAllItems();
-				//leerRecetas(comboBoxR);
+				comboBoxR.removeAllItems();
+				leerRecetas(comboBoxR);
 			            }catch(SQLException excepcionSql ){
 			                excepcionSql.printStackTrace();    
 			            }
