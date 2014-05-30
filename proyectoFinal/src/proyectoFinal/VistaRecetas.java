@@ -33,11 +33,11 @@ public class VistaRecetas extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public VistaRecetas() {
+	public VistaRecetas(Receta reccetaElegida) {
 		setTitle("Recetas");
 		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\Eri\\git\\ErikaCebriaDam\\proyectoFinal\\src\\descarga.jpg"));
 		setForeground(new Color(153, 153, 204));
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);//Oculta la ventana
 		setBounds(100, 100, 450, 403);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

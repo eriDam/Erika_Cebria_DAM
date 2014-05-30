@@ -15,6 +15,10 @@ private String categoria;
 	public Receta() {
 		// TODO Auto-generated constructor stub
 	}
+	public Receta(String nombre) {
+		this.nombre = nombre;
+		// TODO Auto-generated constructor stub
+	}
 	
 	
 		public Receta(int idReceta,String nombre,String ingredientes,float precio,String dificultad,String descripcion,String categoria) {
