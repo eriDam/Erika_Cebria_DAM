@@ -176,6 +176,7 @@ public class VTabRecetas extends JFrame {
 		btnGuardar.setBounds(325, 256, 89, 23);
 		panel.add(btnGuardar);
 		
+		//****************   TAB CATEGORIA ENTRANTES ******************
 		JLabel lblCategora = new JLabel("Categor\u00EDa");
 		lblCategora.setBounds(10, 6, 74, 14);
 		panel.add(lblCategora);
@@ -279,6 +280,7 @@ public class VTabRecetas extends JFrame {
 		panel_1.add(txtPrimeros);
 		txtPrimeros.setColumns(10);
 		
+		//************ TAB POSTRES ****************************
 		JPanel panel_2 = new JPanel();
 		tabbedPane.addTab("Postres", null, panel_2, null);
 		panel_2.setLayout(null);
@@ -343,6 +345,7 @@ public class VTabRecetas extends JFrame {
 		JButton btnGuardar_2 = new JButton("Guardar");
 		btnGuardar_2.setBounds(307, 271, 89, 23);
 		panel_2.add(btnGuardar_2);
+		
 		
 		JLabel lblCategora_2 = new JLabel("Categor\u00EDa");
 		lblCategora_2.setBounds(10, 11, 67, 14);

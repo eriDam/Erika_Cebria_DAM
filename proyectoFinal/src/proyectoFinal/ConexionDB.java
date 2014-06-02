@@ -113,14 +113,19 @@ public class ConexionDB {
 				 try{
 				// Preparamos la consulta
 				Statement instruccion = (Statement) conexion.createStatement();	
-				System.out.println(("SELECT * FROM users WHERE `username`='"+user+"' AND `password`="+password));
+				System.out.println(("SELECT * FROM users WHERE `name`='"+user+"' AND `password`='"+password+"'"));
 				// Se realiza la consulta
-				resUser = instruccion.executeQuery ("SELECT * FROM users WHERE `name`='"+user+"' AND `password`="+password);
+				resUser = instruccion.executeQuery ("SELECT * FROM users WHERE `name`='"+user+"' AND `password`='"+password+"'");
 				System.out.println("Leyendo user de la bd"+resUser);
-				conectado=true;//lo dejo comentado : si siempre es true, en el boton login me entra siempre en el if
+				resUser.last();//llamo al ultimo
+				if(resUser.getRow()>0)//si getRow devuelve 0 no hay nada, si devuelve 1 entra
+					conectado=true;//lo dejo comentado : si siempre es true, en el boton login me entra siempre en el if
+				else
+					conectado=false;
 			}catch(SQLException e){
 				JOptionPane.showInternalMessageDialog(null,"Revisa usuario o contraseña");
                 System.out.println("Revisa usuario o contraseña");
+                return conectado;//devuelve la variable conectado.
             }
 				return conectado;//devuelve la variable conectado.
 		

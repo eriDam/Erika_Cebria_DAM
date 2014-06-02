@@ -26,6 +26,7 @@ import java.awt.event.ItemListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+
 import javax.swing.JPasswordField;
 
 public class VPRecetarium extends JFrame {
@@ -88,10 +89,18 @@ public class VPRecetarium extends JFrame {
 		btnAnReceta.setBackground(new Color(153, 204, 51));
 		btnAnReceta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
-			}
-			
-		});
+				//Accion para abrir la ventana TabRecetas donde se añaden
+				EventQueue.invokeLater(new Runnable() {
+					public void run() {
+						try {
+							VTabRecetas frame = new VTabRecetas();
+							frame.setVisible(true);
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+				});}
+		});;
 		btnAnReceta.setBounds(122, 141, 165, 23);
 		panel.add(btnAnReceta);
 		
@@ -156,7 +165,7 @@ public class VPRecetarium extends JFrame {
 		panel.add(textField);
 		textField.setColumns(40);
 		
-		//Boton buscar
+		//---------------Boton buscar-------------------------
 		JButton btnNewButton = new JButton("Buscar");
 		btnNewButton.setBackground(new Color(153, 204, 51));
 		btnNewButton.setForeground(new Color(0, 0, 0));
@@ -193,12 +202,12 @@ public class VPRecetarium extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				//le paso el metodo getLogin igualandolo a
 				//coge el password del campopassword, convierte a int desde String coge el campo usuario
-				boolean conectado = miConexion.getLogin(textFieldUser.getText(), String.valueOf(passwordField.getPassword()));
+				boolean conectado = miConexion.getLogin(textFieldUser.getText(),String.valueOf(passwordField.getPassword()));
 				if (conectado==true){
 					//Falta poner que compruebe el usuario en la bd bien
 					System.out.println("Usuario ok");
 				}else {
-					System.out.println("No existe el usuario");
+					System.out.println(" NO existe el usuario");
 				}
 			}
 		});
