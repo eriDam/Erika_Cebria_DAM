@@ -18,6 +18,7 @@ public class ConexionDB {
 	private Statement instruccion = null;//instrucción de consulta
 	private ResultSet resRecetas = null;// Maneja los resultados de Receta
 	private ResultSet resUser = null;//Maneja los resultados de Usuario
+	private ResultSet resBuscar = null;//Maneja los resultados de Buscar
 	
 	public ConexionDB() {
 		//conectamos a la BD
@@ -71,8 +72,8 @@ public class ConexionDB {
 
 			}//cierro metodo leerRecetas
 			
-			//***********************  Leer receta filtrando categoria  ******************************
-			public void leerRecetasCat(JComboBox comboBoxR, String categoria){
+			//***********************  Buscar receta filtrando categoria  ******************************
+			public void BuscarReceCat(String categoria){
 				//Aquí realizaremos la consulta y actualización del combobox
 				// crea objeto Statement para consultar la base de datos
 				try
@@ -80,8 +81,10 @@ public class ConexionDB {
 					// Preparamos la consulta
 					Statement instruccion = (Statement) conexion.createStatement();	 
 					// Se realiza la consulta
-					resRecetas = instruccion.executeQuery ("SELECT * FROM recetas WHERE categoria LIKE Primeros");		 
-					} catch (Exception e){
+					resBuscar = instruccion.executeQuery ("SELECT * FROM recetas WHERE categoria LIKE Entrantes");		 
+				System.out.println("La receta es "+resBuscar);	
+				}
+					catch (Exception e){
 					System.out.println ("No hay nada en esa categoría");
 					JOptionPane.showMessageDialog( null, "No hay nada en esa categoría");
 					}
@@ -130,5 +133,5 @@ public class ConexionDB {
 				return conectado;//devuelve la variable conectado.
 		
 			}
-			}
+	}
 

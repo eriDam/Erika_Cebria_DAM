@@ -173,7 +173,9 @@ public class VPRecetarium extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				//Falta poner accion que busque en la bd
+				//Utiliza el método buscar..que esta en la clase Conexion
+			
+			miConexion.BuscarReceCat("Entrantes");
 			}
 		});
 		btnNewButton.setBounds(277, 63, 106, 23);
