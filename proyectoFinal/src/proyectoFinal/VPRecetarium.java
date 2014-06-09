@@ -13,6 +13,7 @@ import java.awt.Toolkit;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.border.TitledBorder;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.JButton;
 
 import java.awt.event.ActionListener;
@@ -32,14 +33,16 @@ import javax.swing.JPasswordField;
 public class VPRecetarium extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
+	private JTextField textBusqueda;
 	private ConexionDB miConexion;
 	private JComboBox<Receta> comboBoxR;
-	Receta recetas=new Receta();//Creo objeto para usar Recetas
+	Receta recetas;//Creo objeto para usar Recetas
 	VistaRecetas vR;
 	boolean abrirVistaReceta=false;
 	private JTextField textFieldUser;
 	private JPasswordField passwordField;
+	private DefaultTableModel dtmResultados;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -62,7 +65,9 @@ public class VPRecetarium extends JFrame {
 	
 	public VPRecetarium() {
 	//Creamos objeto para llamar al método	
-	miConexion = new ConexionDB();
+		miConexion = new ConexionDB();
+		recetas = new Receta ();
+		
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setForeground(new Color(0, 102, 0));
@@ -130,16 +135,7 @@ public class VPRecetarium extends JFrame {
 				abrirVistaReceta=true;
 				
 			}
-//			public void actionPerformed(ActionEvent e) {
-//				EventQueue.invokeLater(new Runnable() {
-//				public void run() {
-//					try {
-//						VistaRecetas frame = new VistaRecetas(null);//Solo acepta null
-//						frame.setVisible(true);
-//					} catch (Exception e) {
-//						e.printStackTrace();
-//					}
-			 
+
 		});
 		btnPlatosFros.setBounds(139, 97, 119, 23);
 		panel.add(btnPlatosFros);
@@ -159,27 +155,36 @@ public class VPRecetarium extends JFrame {
 		btnPlatosCalientes.setBounds(277, 97, 106, 23);
 		panel.add(btnPlatosCalientes);
 		
-		textField = new JTextField();
-		textField.setBackground(new Color(153, 204, 51));
-		textField.setBounds(10, 63, 248, 23);
-		panel.add(textField);
-		textField.setColumns(40);
+		textBusqueda = new JTextField();
+		textBusqueda.setBackground(new Color(153, 204, 51));
+		textBusqueda.setBounds(10, 63, 248, 23);
+		panel.add(textBusqueda);
+		textBusqueda.setColumns(40);
 		
 		//---------------Boton buscar-------------------------
-		JButton btnNewButton = new JButton("Buscar");
-		btnNewButton.setBackground(new Color(153, 204, 51));
-		btnNewButton.setForeground(new Color(0, 0, 0));
-		btnNewButton.setIcon(null);
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton btnBuscar = new JButton("Buscar");
+		btnBuscar.setBackground(new Color(153, 204, 51));
+		btnBuscar.setForeground(new Color(0, 0, 0));
+		btnBuscar.setIcon(null);
+		btnBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
+				//Se coloca arriba de try antes de coger el texto
+				miConexion.BuscarReceCat(textBusqueda.getText());		
 				//Utiliza el método buscar..que esta en la clase Conexion
+				try {
+					VistaRecetas frame = new VistaRecetas(recetas, dtmResultados);//No se que le tengo que pasar...x que no muestra en la ventana el resultado
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				
+					}
+					
 			
-			miConexion.BuscarReceCat("Entrantes");
-			}
-		});
-		btnNewButton.setBounds(277, 63, 106, 23);
-		panel.add(btnNewButton);
+		
+					});
+		btnBuscar.setBounds(277, 63, 106, 23);
+		panel.add(btnBuscar);
 		
 		JLabel lblUser = new JLabel("User");
 		lblUser.setBounds(10, 21, 46, 14);
@@ -227,7 +232,7 @@ public class VPRecetarium extends JFrame {
 						//getItemAdd devolverá el objeto completo aunque yo al combobox le pase solo el nombre
 						//getSelectedIndex, sacará la posición
 						if(comboBoxR.getSelectedIndex()>0){
-						VistaRecetas frame = new VistaRecetas(comboBoxR.getItemAt(comboBoxR.getSelectedIndex()));
+						VistaRecetas frame = new VistaRecetas(comboBoxR.getItemAt(comboBoxR.getSelectedIndex()),dtmResultados);
 						frame.setVisible(true);
 						}
 					} catch (Exception e) {
@@ -257,6 +262,37 @@ public class VPRecetarium extends JFrame {
 	
 		
 		miConexion.leerRecetas(comboBoxR);
+		
+		//JTABLE
+        //1.- Definimos el modelo de JTable, en nuestro caso DefaultModel
+		//2.- Definimos los títulos de las columnas
+		//3.- Rellenamos las filas a partir de la consulta a la base de datos
+		//3.- Creamos el JTable y le asignamos el modelo rellenado
+		//4,. Ponemos el JTable dentro de un JScrollPane para poder hacer scroll
+		//5.- Damos visivilidad al JTable con setViewportView
+       //va a almacenar resultados
+		dtmResultados = new DefaultTableModel(null,rellenarTitColumnas());
+		
+					}
 	
+	
+	//Encabezados de la tabla
+	//El error esta aqui, no está leyendo los resultados para los encabezados
+	private String[] rellenarTitColumnas()
+	{
+		       String columna[]=new String[]{"idReceta","nombre","ingredientes","precio","dificultad","descripcion","categoria"};
+		       //return columna;
+				//Añadir datos al modelo
+		        Object datos[]=new Object[7]; //Numero de columnas de la tabla
+		        while (resBuscar.next()) {
+		        	for (int i = 0; i < 3; i++) {
+		            	datos[i] = resBuscar.getObject(i + 1);
+		            }
+		        	dtmResultados.addRow(datos);
+		        }
+		        resBuscar.close();
 	}
-}
+		 
+		 
+	}
+

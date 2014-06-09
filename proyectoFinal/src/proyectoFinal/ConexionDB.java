@@ -25,7 +25,7 @@ public class ConexionDB {
 		//hace una especie de import, la diferencia entre class for name e import es q
 		//podemos importar librerias y objetos de forma dinamica,cuando estamos ejecutando
 		try {
-			Class.forName("com.mysql.jdbc.Driver");//cargar libreria a traves de build path add external
+			Class.forName("com.mysql.jdbc.Driver");//cargar libreria a traves de build path add external cargar driver
 			// establece la conexión a la base de datos - Conecto 
 			conexion = (Connection) DriverManager.getConnection("jdbc:mysql://localhost/recetarium","root","");
 			System.out.println("Has conectado a la BD");
@@ -81,8 +81,11 @@ public class ConexionDB {
 					// Preparamos la consulta
 					Statement instruccion = (Statement) conexion.createStatement();	 
 					// Se realiza la consulta
-					resBuscar = instruccion.executeQuery ("SELECT * FROM recetas WHERE categoria LIKE Entrantes");		 
-				System.out.println("La receta es "+resBuscar);	
+					resBuscar = instruccion.executeQuery ("SELECT * FROM recetas WHERE categoria LIKE '"+categoria+"'");	
+					while(resBuscar.next()){
+						System.out.println("La receta es "+resBuscar.getString("nombre"));
+					}
+					
 				}
 					catch (Exception e){
 					System.out.println ("No hay nada en esa categoría");
@@ -132,6 +135,16 @@ public class ConexionDB {
             }
 				return conectado;//devuelve la variable conectado.
 		
+			}
+			
+			public void insertarDificultad(String pregunta,String opcion){
+				try{
+					instruccion = (Statement) conexion.createStatement();
+					// consulta la base de datos
+					//instruccion.executeUpdate("INSERT INTO recetas ( facil,normal,dificil ) VALUES( '"+facil+"','"+normal+",'"+dificil+"')");
+				}catch( SQLException excepcionSql ){
+					excepcionSql.printStackTrace();
+				}// fin de catch	
 			}
 	}
 

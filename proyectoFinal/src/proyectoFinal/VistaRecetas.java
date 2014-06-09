@@ -6,11 +6,14 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
 
 import java.awt.Color;
 import java.awt.Toolkit;
 
 import javax.swing.JLabel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.JRadioButton;
 import javax.swing.JButton;
@@ -24,6 +27,11 @@ public class VistaRecetas extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textFieldN;
+	
+	//creo atributos
+	private DefaultTableModel dtmResultados;
+	private JTable table;
+	private JScrollPane scpEjemplo;
 
 	/**
 	 * Launch the application.
@@ -33,7 +41,10 @@ public class VistaRecetas extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public VistaRecetas(Receta reccetaElegida) {
+	public VistaRecetas(Receta reccetaElegida,DefaultTableModel recetasBuscadas) {
+		dtmResultados=recetasBuscadas;
+		
+		
 		setTitle("Recetas");
 		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\Eri\\git\\ErikaCebriaDam\\proyectoFinal\\src\\descarga.jpg"));
 		setForeground(new Color(153, 153, 204));
@@ -102,5 +113,10 @@ public class VistaRecetas extends JFrame {
 		label.setIcon(new ImageIcon("C:\\Users\\Eri\\git\\ErikaCebriaDam\\proyectoFinal\\src\\logo.jpg"));
 		label.setBounds(10, 0, 424, 179);
 		contentPane.add(label);
+	
+
+	
 	}
+	
+
 }
