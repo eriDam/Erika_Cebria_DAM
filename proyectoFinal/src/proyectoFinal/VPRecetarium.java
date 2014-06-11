@@ -285,12 +285,13 @@ public class VPRecetarium extends JFrame {
 				//Añadir datos al modelo
 		        Object datos[]=new Object[7]; //Numero de columnas de la tabla
 		        while (resBuscar.next()) {
-		        	for (int i = 0; i < 3; i++) {
+		        	for (int i = 0; i < 7; i++) {
 		            	datos[i] = resBuscar.getObject(i + 1);
 		            }
 		        	dtmResultados.addRow(datos);
-		        }
-		        resBuscar.close();
+		       
+		       }
+		       resBuscar.close(); 
 	}
 		 
 		 
