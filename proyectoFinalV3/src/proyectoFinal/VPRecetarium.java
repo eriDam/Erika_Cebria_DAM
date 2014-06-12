@@ -29,6 +29,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.JPasswordField;
+import javax.swing.SwingConstants;
 
 public class VPRecetarium extends JFrame {
 
@@ -71,7 +72,7 @@ public class VPRecetarium extends JFrame {
 		setTitle("RECETARIUM");
 		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\Eri\\git\\ErikaCebriaDam\\proyectoFinal\\src\\logo.jpg"));
 		setBackground(new Color(0, 102, 51));
-		setBounds(100, 100, 422, 302);
+		setBounds(100, 100, 422, 268);
 		contentPane = new JPanel();
 		contentPane.setForeground(Color.WHITE);
 		contentPane.setBackground(Color.LIGHT_GRAY);
@@ -87,11 +88,13 @@ public class VPRecetarium extends JFrame {
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
+		
+		//**************** Botón añadir Receta ******************************
 		JButton btnAnReceta = new JButton("A\u00F1adir Receta");
 		btnAnReceta.setBackground(new Color(153, 204, 51));
 		btnAnReceta.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				//Accion para abrir la ventana TabRecetas donde se añaden
+				//Accion para abrir la ventana TabRecetas donde se añaden, cojo cabecera de su clase
 				EventQueue.invokeLater(new Runnable() {
 					public void run() {
 						try {
@@ -103,54 +106,26 @@ public class VPRecetarium extends JFrame {
 					}
 				});}
 		});;
-		btnAnReceta.setBounds(122, 141, 165, 23);
+		btnAnReceta.setBounds(231, 107, 165, 23);
 		panel.add(btnAnReceta);
 		
-		//Boton entrantes y su accion que llevará a abrir Recetas
-		JButton btnEntrantes = new JButton("Entrantes");
-		btnEntrantes.setBackground(new Color(153, 204, 51));
-		btnEntrantes.addActionListener(new ActionListener() {
+		//**********************Boton Leer Recetas ****************************************************
+		//y su accion que llevará a Leer las  Recetas que hay
+		JButton btnLeerR = new JButton("Leer Recetas");
+		btnLeerR.setBackground(new Color(153, 204, 51));
+		btnLeerR.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				abrirVistaReceta=false;
+			 abrirVistaReceta=false;
 				comboBoxR.removeAllItems();
 				miConexion.leerRecetas(comboBoxR);
 				abrirVistaReceta=true;
 				
-			}
-		});
-		btnEntrantes.setBounds(10, 97, 119, 23);
-		panel.add(btnEntrantes);
-		
-		//Botón Primeros que lleva a abrir Ventana Recetas con un Select * from recetas where categoria=primeros
-		JButton btnPlatosFros = new JButton("Primeros");
-		btnPlatosFros.setBackground(new Color(153, 204, 51));
-		btnPlatosFros.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				abrirVistaReceta=false;
-				comboBoxR.removeAllItems();
-				miConexion.leerRecetas(comboBoxR);
-				abrirVistaReceta=true;
+				 		 
 				
 			}
- 			 
 		});
-		btnPlatosFros.setBounds(139, 97, 119, 23);
-		panel.add(btnPlatosFros);
-		
-		
-		//Botón Postres que lleva a abrir Ventana Recetas con un Select * from recetas where categoria=postres
-		JButton btnPlatosCalientes = new JButton("Postres");
-		btnPlatosCalientes.setBackground(new Color(153, 204, 51));
-		btnPlatosCalientes.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				abrirVistaReceta=false;
-				comboBoxR.removeAllItems();
-				miConexion.leerRecetas(comboBoxR);
-				abrirVistaReceta=true;
-			}
-		});
-		btnPlatosCalientes.setBounds(277, 97, 106, 23);
-		panel.add(btnPlatosCalientes);
+		btnLeerR.setBounds(10, 107, 165, 23);
+		panel.add(btnLeerR);
 		
 		textBusca = new JTextField();
 		textBusca.setBackground(new Color(153, 204, 51));
@@ -166,7 +141,7 @@ public class VPRecetarium extends JFrame {
 		btnBuscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				//Se coloca arriba de try antes de coger el texto
-				miConexion.leerRecetasCat(textBusca.getText());		
+				miConexion.leerRecetasN(textBusca.getText());		
 				//Utiliza el método buscar..que esta en la clase Conexion
 				//try {
 					//VistaRecetas frame = new VistaRecetas(recetas, dtmResultados);//No se que le tengo que pasar...x que no muestra en la ventana el resultado
@@ -200,7 +175,7 @@ public class VPRecetarium extends JFrame {
 		passwordField.setBounds(211, 18, 91, 20);
 		panel.add(passwordField);
 		
-		//----------- Boton Login  ---------
+		//******************************* Boton Login **********************************
 		JButton btnLogin = new JButton("Login");
 		btnLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {

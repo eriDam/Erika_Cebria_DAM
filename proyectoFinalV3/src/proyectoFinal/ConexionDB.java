@@ -45,7 +45,9 @@ public class ConexionDB {
 				//Aquí realizaremos la consulta y actualización del combobox
 				// crea objeto Statement para consultar la base de datos
 				try
-				{			
+				
+				{		
+					comboBoxR.removeAllItems();
 					// Preparamos la consulta
 					Statement instruccion = (Statement) conexion.createStatement();	 
 					// Se realiza la consulta
@@ -60,7 +62,7 @@ public class ConexionDB {
 					// Rellenar el combobox a partir de consulta
 					//Ultimo Paso Mostrar por pantalla
 					comboBoxR.addItem(nuevaReceta);
-					System.out.println("Receta Añadida: "+nuevaReceta);
+					//System.out.println("Receta Añadida: "+nuevaReceta);
 					//JOptionPane.showMessageDialog( null, "El nombre de la receta añadida es: " +nuevaReceta);
 				}//cierro while
 					} catch (Exception e){
@@ -72,7 +74,7 @@ public class ConexionDB {
 			
 			//***********************  Leer receta filtrando categoria  ******************************
 			
-			public void leerRecetasCat(String categoria){
+			public void leerRecetasN(String nombre){
 				//Aquí realizaremos la consulta y actualización del combobox
 				// crea objeto Statement para consultar la base de datos
 				try
@@ -80,7 +82,7 @@ public class ConexionDB {
 					// Preparamos la consulta
 					Statement instruccion = (Statement) conexion.createStatement();	 
 					// Se realiza la consulta
-					resBuscar = instruccion.executeQuery ("SELECT * FROM recetas WHERE categoria LIKE '"+categoria+"'");
+					resBuscar = instruccion.executeQuery ("SELECT * FROM recetas WHERE categoria LIKE '"+nombre+"'");
 					while(resBuscar.next()){
 						System.out.println("La receta es "+resBuscar.getString("nombre"));
 						JOptionPane.showMessageDialog(null, "La receta es "+resBuscar.getString("nombre"));
@@ -96,7 +98,8 @@ public class ConexionDB {
 		
 			public void insertarReceta(int idReceta,String nombre, String ingredientes, float precio,String dificultad,String  descripcion,String categoria,JComboBox comboBoxR){
 				//Aquí realizaremos la consulta				 
-				 try{
+				//VTabRecetas vtRecetas= new VTabRecetas();
+				try{
 					 //preparamos la conexion con Statement
 					 instruccion = (Statement) conexion.createStatement();
 			            //Insertamos datos
@@ -104,7 +107,8 @@ public class ConexionDB {
 			            insertBBDD = insertBBDD + "VALUES ("+idReceta+",'"+nombre+"','"+ingredientes+"',"+precio+",'"+dificultad+"','"+descripcion+"','"+categoria+"' )";//los Strings '""' los int ""
 			            instruccion.executeUpdate(insertBBDD);
 			            //Actualizamos el comboBox
-			            comboBoxR.updateUI();
+			            //comboBoxR.updateUI();
+			           // leerRecetas(vtRecetas.comboBoxR);
 			            }catch(SQLException e ){
 			            	JOptionPane.showMessageDialog( null, "No se ha guardado la receta");   
 			            }

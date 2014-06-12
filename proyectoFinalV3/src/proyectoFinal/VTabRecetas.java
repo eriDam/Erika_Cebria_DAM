@@ -21,6 +21,7 @@ import javax.swing.JButton;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Dialog.ModalExclusionType;
 
 public class VTabRecetas extends JFrame {
 	//Atributos
@@ -69,31 +70,6 @@ public class VTabRecetas extends JFrame {
 		tabbedPane.setBounds(0, 24, 478, 333);
 		contentPane.add(tabbedPane);
 		
-		JPanel panel = new JPanel();
-		tabbedPane.addTab("Entrantes", null, panel, null);
-		panel.setLayout(null);
-		
-		JLabel labelEnt = new JLabel("");
-		labelEnt.setBounds(238, -2, 225, 234);
-		labelEnt.setIcon(new ImageIcon("C:\\Users\\Eri\\git\\ErikaCebriaDam\\proyectoFinal\\src\\entrantes.gif"));
-		panel.add(labelEnt);
-		
-		JLabel lblNombre = new JLabel("Nombre");
-		lblNombre.setBounds(10, 31, 46, 14);
-		panel.add(lblNombre);
-		
-		JLabel lblIngredientes = new JLabel("Ingredientes");
-		lblIngredientes.setBounds(10, 77, 74, 14);
-		panel.add(lblIngredientes);
-		
-		JLabel lblPrecio = new JLabel("Precio");
-		lblPrecio.setBounds(10, 121, 46, 14);
-		panel.add(lblPrecio);
-		
-		JLabel lblDificultad = new JLabel("Dificultad");
-		lblDificultad.setBounds(10, 167, 95, 14);
-		panel.add(lblDificultad);
-		
 		//****************Creo el grupo de Botones************************
 		
 		grupoDeBotones = new ButtonGroup();
@@ -128,6 +104,31 @@ public class VTabRecetas extends JFrame {
 		rdbtnDificil.setBounds(169, 188, 109, 23);
 		panel.add(rdbtnDificil);*/
 		
+		JPanel panel = new JPanel();
+		tabbedPane.addTab("Entrantes", null, panel, null);
+		panel.setLayout(null);
+		
+		JLabel labelEnt = new JLabel("");
+		labelEnt.setBounds(238, -2, 225, 234);
+		labelEnt.setIcon(new ImageIcon("C:\\Users\\Eri\\git\\ErikaCebriaDam\\proyectoFinal\\src\\entrantes.gif"));
+		panel.add(labelEnt);
+		
+		JLabel lblNombre = new JLabel("Nombre");
+		lblNombre.setBounds(10, 31, 46, 14);
+		panel.add(lblNombre);
+		
+		JLabel lblIngredientes = new JLabel("Ingredientes");
+		lblIngredientes.setBounds(10, 77, 74, 14);
+		panel.add(lblIngredientes);
+		
+		JLabel lblPrecio = new JLabel("Precio");
+		lblPrecio.setBounds(10, 121, 46, 14);
+		panel.add(lblPrecio);
+		
+		JLabel lblDificultad = new JLabel("Dificultad");
+		lblDificultad.setBounds(10, 167, 95, 14);
+		panel.add(lblDificultad);
+		
 		JLabel lblDescripcion = new JLabel("Descripci\u00F3n");
 		lblDescripcion.setBounds(10, 218, 95, 14);
 		panel.add(lblDescripcion);
@@ -151,57 +152,57 @@ public class VTabRecetas extends JFrame {
 		textFieldDesEnt.setBounds(10, 241, 193, 53);
 		panel.add(textFieldDesEnt);
 		textFieldDesEnt.setColumns(10);
-
-
-
 		
-		JButton btnGuardar = new JButton("Guardar");
-		btnGuardar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
+		
+		
 				
-				int idReceta= Integer.valueOf(Integer.parseInt(textFieldIdreceta.getText()));
-				String nombre=textFieldNomEnt.getText();
-				String ingredientes=textFieldIngrEnt.getText();
-				float precio= Float.valueOf(Float.parseFloat(textFieldPreEnt.getText()));
-				// String dificultad =rdbtnFcil.getText();//Como es radio button no se como cogerlo
-				String dificultad =textFieldDifEnt.getText();
-				String descripcion= textFieldDesEnt.getText();
-				String categoria=txtEntrantes.getText();
-				
-				 //Llamamos al metodo insertar Receta
+				JButton btnGuardar = new JButton("Guardar");
+				btnGuardar.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+						
+						int idReceta= Integer.valueOf(Integer.parseInt(textFieldIdreceta.getText()));
+						String nombre=textFieldNomEnt.getText();
+						String ingredientes=textFieldIngrEnt.getText();
+						float precio= Float.valueOf(Float.parseFloat(textFieldPreEnt.getText()));
+						// String dificultad =rdbtnFcil.getText();//Como es radio button no se como cogerlo
+						String dificultad =textFieldDifEnt.getText();
+						String descripcion= textFieldDesEnt.getText();
+						String categoria=txtEntrantes.getText();
+						
+						 //Llamamos al metodo insertar Receta
                 f.insertarReceta(idReceta, nombre, ingredientes, precio, dificultad, descripcion, categoria, comboBoxR);
                
-			}
-		});
-		btnGuardar.setBounds(325, 256, 89, 23);
-		panel.add(btnGuardar);
-		
-		//****************   TAB CATEGORIA ENTRANTES ******************
-		JLabel lblCategora = new JLabel("Categor\u00EDa");
-		lblCategora.setBounds(10, 6, 74, 14);
-		panel.add(lblCategora);
-		
-		txtEntrantes = new JTextField();
-		txtEntrantes.setEnabled(false);
-		txtEntrantes.setEditable(false);
-		txtEntrantes.setText("Entrantes");
-		txtEntrantes.setBounds(66, 3, 86, 20);
-		panel.add(txtEntrantes);
-		txtEntrantes.setColumns(10);
-		
-		JLabel lblIdreceta = new JLabel("IdReceta");
-		lblIdreceta.setBounds(162, 6, 46, 14);
-		panel.add(lblIdreceta);
-		
-		textFieldIdreceta = new JTextField();
-		textFieldIdreceta.setBounds(219, 3, 32, 20);
-		panel.add(textFieldIdreceta);
-		textFieldIdreceta.setColumns(10);
-		
-		textFieldDifEnt = new JTextField();
-		textFieldDifEnt.setBounds(85, 164, 86, 20);
-		panel.add(textFieldDifEnt);
-		textFieldDifEnt.setColumns(10);
+					}
+				});
+				btnGuardar.setBounds(325, 256, 89, 23);
+				panel.add(btnGuardar);
+				
+				//****************   TAB CATEGORIA ENTRANTES ******************
+				JLabel lblCategora = new JLabel("Categor\u00EDa");
+				lblCategora.setBounds(10, 6, 74, 14);
+				panel.add(lblCategora);
+				
+				txtEntrantes = new JTextField();
+				txtEntrantes.setEnabled(false);
+				txtEntrantes.setEditable(false);
+				txtEntrantes.setText("Entrantes");
+				txtEntrantes.setBounds(66, 3, 86, 20);
+				panel.add(txtEntrantes);
+				txtEntrantes.setColumns(10);
+				
+				JLabel lblIdreceta = new JLabel("IdReceta");
+				lblIdreceta.setBounds(162, 6, 46, 14);
+				panel.add(lblIdreceta);
+				
+				textFieldIdreceta = new JTextField();
+				textFieldIdreceta.setBounds(219, 3, 32, 20);
+				panel.add(textFieldIdreceta);
+				textFieldIdreceta.setColumns(10);
+				
+				textFieldDifEnt = new JTextField();
+				textFieldDifEnt.setBounds(85, 164, 86, 20);
+				panel.add(textFieldDifEnt);
+				textFieldDifEnt.setColumns(10);
 		
 		JPanel panel_1 = new JPanel();
 		tabbedPane.addTab("Primeros", null, panel_1, null);
