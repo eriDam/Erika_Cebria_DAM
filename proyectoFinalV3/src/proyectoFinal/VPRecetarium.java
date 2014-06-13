@@ -144,16 +144,13 @@ public class VPRecetarium extends JFrame {
 				miConexion.leerRecetasN(textBusca.getText());		
 				//Utiliza el método buscar..que esta en la clase Conexion
 				//try {
-					//VistaRecetas frame = new VistaRecetas(recetas, dtmResultados);//No se que le tengo que pasar...x que no muestra en la ventana el resultado
+					//VistaRecetas frame = new VistaRecetas(recetas, dtmResultados);
 					//frame.setVisible(true);
 				//} catch (Exception e) {
 					//e.printStackTrace();
 				//}
 				
 					}
-					
-			
-		
 					});
 		btnBuscar.setBounds(277, 63, 106, 23);
 		panel.add(btnBuscar);

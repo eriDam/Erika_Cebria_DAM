@@ -35,22 +35,30 @@ public class VTabRecetas extends JFrame {
 	private JTextField textFieldIngPr;
 	private JTextField textFieldPrecPr;
 	private JTextField textFieldDesPos;
-	private JTextField textFieldNomPos;
-	private JTextField textFieldIngPos;
+	private JTextField textFieldNomPo;
+	private JTextField textFieldIngPo;
 	private JTextField textFieldPrecioPos;
 	private JTextField txtEntrantes;
-	private JTextField txtPrimeros;
-	private JTextField txtPostres;
-	private JTextField textFieldIdreceta;
-	private JComboBox<Receta> comboBoxR;
+	private JTextField txtCatPr;
+	private JTextField txtCatPo;
+	private JTextField textFieldIdrecetaEn;
 	private JTextField textFieldDifEnt;
-	//Creo el grupo de botones
-	private ButtonGroup grupoDeBotones;
-	private JRadioButton opF;
-	private JRadioButton opN;
-	private JRadioButton opD;
-	//Creamos objeto para llamar al método
-		ConexionDB f= new ConexionDB();
+	private JTextField textFieldIdRecetaPr;
+	private JTextField textFieldDifPr;
+	private JTextField textFieldIdRecetaPo;
+	private JTextField textFieldDifPo;
+//	//Creo el grupo de botones
+//	private ButtonGroup grupoDeBotones;
+//	private JRadioButton opF;
+//	private JRadioButton opN;
+//	private JRadioButton opD;
+	
+	//Creo el ComboBox
+	private JComboBox<Receta> comboBoxR;
+	
+	//Creamos objeto para usar Conexión
+	ConexionDB f= new ConexionDB();
+
 	
 	/**
 	 * Create the frame.
@@ -72,244 +80,271 @@ public class VTabRecetas extends JFrame {
 		
 		//****************Creo el grupo de Botones************************
 		
-		grupoDeBotones = new ButtonGroup();
-		opF = new JRadioButton("OpF");
-		opF.setSelected(true);
-		opF.setBounds(6, 103, 109, 23);
-		contentPane.add(opF);
-		
-		opN = new JRadioButton("OpN");
-		opN.setBounds(6, 140, 109, 23);
-		contentPane.add(opN);
-		
-		opD = new JRadioButton("OpD");
-		opD.setBounds(6, 180, 109, 23);
-		contentPane.add(opD);
-		
-		//Añadimos los botones a un grupo de botones
-				grupoDeBotones.add(opF);
-				grupoDeBotones.add(opN);
-				grupoDeBotones.add(opD);
+//		grupoDeBotones = new ButtonGroup();
+//		opF = new JRadioButton("OpF");
+//		opF.setSelected(true);
+//		opF.setBounds(6, 103, 109, 23);
+//		contentPane.add(opF);
+//		
+//		opN = new JRadioButton("OpN");
+//		opN.setBounds(6, 140, 109, 23);
+//		contentPane.add(opN);
+//		
+//		opD = new JRadioButton("OpD");
+//		opD.setBounds(6, 180, 109, 23);
+//		contentPane.add(opD);
+//		
+//		//Añadimos los botones a un grupo de botones
+//				grupoDeBotones.add(opF);
+//				grupoDeBotones.add(opN);
+//				grupoDeBotones.add(opD);
 				
-				
-		/*JRadioButton rdbtnFcil = new JRadioButton("F\u00E1cil");
-		rdbtnFcil.setBounds(10, 188, 68, 23);
-		panel.add(rdbtnFcil);
+//		JRadioButton rdbtnFcil = new JRadioButton("F\u00E1cil");
+//		rdbtnFcil.setBounds(10, 188, 68, 23);
+//		panel.add(rdbtnFcil);
+//		
+//		JRadioButton rdbtnNormal = new JRadioButton("Normal");
+//		rdbtnNormal.setBounds(80, 188, 74, 23);
+//		panel.add(rdbtnNormal);
+//		
+//		JRadioButton rdbtnDificil = new JRadioButton("Dificil");
+//		rdbtnDificil.setBounds(169, 188, 109, 23);
+//		panel.add(rdbtnDificil);
 		
-		JRadioButton rdbtnNormal = new JRadioButton("Normal");
-		rdbtnNormal.setBounds(80, 188, 74, 23);
-		panel.add(rdbtnNormal);
-		
-		JRadioButton rdbtnDificil = new JRadioButton("Dificil");
-		rdbtnDificil.setBounds(169, 188, 109, 23);
-		panel.add(rdbtnDificil);*/
-		
-		JPanel panel = new JPanel();
-		tabbedPane.addTab("Entrantes", null, panel, null);
-		panel.setLayout(null);
+		//----------------------------------------
+		//           PANEL ENTRANTES
+		// --------------------------------------- 
+		JPanel panelEntrantes = new JPanel();
+		tabbedPane.addTab("Entrantes", null, panelEntrantes, null);
+		panelEntrantes.setLayout(null);
 		
 		JLabel labelEnt = new JLabel("");
 		labelEnt.setBounds(238, -2, 225, 234);
 		labelEnt.setIcon(new ImageIcon("C:\\Users\\Eri\\git\\ErikaCebriaDam\\proyectoFinal\\src\\entrantes.gif"));
-		panel.add(labelEnt);
+		panelEntrantes.add(labelEnt);
 		
-		JLabel lblNombre = new JLabel("Nombre");
-		lblNombre.setBounds(10, 31, 46, 14);
-		panel.add(lblNombre);
+		JLabel lblNombreEn = new JLabel("Nombre");
+		lblNombreEn.setBounds(10, 31, 46, 14);
+		panelEntrantes.add(lblNombreEn);
 		
-		JLabel lblIngredientes = new JLabel("Ingredientes");
-		lblIngredientes.setBounds(10, 77, 74, 14);
-		panel.add(lblIngredientes);
+		JLabel lblIngredientesEnt = new JLabel("Ingredientes");
+		lblIngredientesEnt.setBounds(10, 77, 74, 14);
+		panelEntrantes.add(lblIngredientesEnt);
 		
-		JLabel lblPrecio = new JLabel("Precio");
-		lblPrecio.setBounds(10, 121, 46, 14);
-		panel.add(lblPrecio);
+		JLabel lblPrecioEnt = new JLabel("Precio");
+		lblPrecioEnt.setBounds(10, 121, 46, 14);
+		panelEntrantes.add(lblPrecioEnt);
 		
-		JLabel lblDificultad = new JLabel("Dificultad");
-		lblDificultad.setBounds(10, 167, 95, 14);
-		panel.add(lblDificultad);
+		JLabel lblDificultadEnt = new JLabel("Dificultad");
+		lblDificultadEnt.setBounds(10, 167, 95, 14);
+		panelEntrantes.add(lblDificultadEnt);
 		
-		JLabel lblDescripcion = new JLabel("Descripci\u00F3n");
-		lblDescripcion.setBounds(10, 218, 95, 14);
-		panel.add(lblDescripcion);
+		JLabel lblDescripcionEnt = new JLabel("Descripci\u00F3n");
+		lblDescripcionEnt.setBounds(10, 218, 95, 14);
+		panelEntrantes.add(lblDescripcionEnt);
 		
 		textFieldNomEnt = new JTextField();
 		textFieldNomEnt.setBounds(10, 46, 193, 20);
-		panel.add(textFieldNomEnt);
+		panelEntrantes.add(textFieldNomEnt);
 		textFieldNomEnt.setColumns(10);
 		
 		textFieldIngrEnt = new JTextField();
 		textFieldIngrEnt.setBounds(10, 90, 193, 20);
-		panel.add(textFieldIngrEnt);
+		panelEntrantes.add(textFieldIngrEnt);
 		textFieldIngrEnt.setColumns(10);
 		
 		textFieldPreEnt = new JTextField();
 		textFieldPreEnt.setBounds(10, 136, 86, 20);
-		panel.add(textFieldPreEnt);
+		panelEntrantes.add(textFieldPreEnt);
 		textFieldPreEnt.setColumns(10);
 		
 		textFieldDesEnt = new JTextField();
 		textFieldDesEnt.setBounds(10, 241, 193, 53);
-		panel.add(textFieldDesEnt);
+		panelEntrantes.add(textFieldDesEnt);
 		textFieldDesEnt.setColumns(10);
 		
+		//BOTON GUARDAR ENTRANTES
+		//con llamada a insertarRecetas, creado en ConexionDB
 		
-		
-				
-				JButton btnGuardar = new JButton("Guardar");
-				btnGuardar.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent arg0) {
+		JButton btnGuardarEnt = new JButton("Guardar");
+		btnGuardarEnt.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
 						
-						int idReceta= Integer.valueOf(Integer.parseInt(textFieldIdreceta.getText()));
-						String nombre=textFieldNomEnt.getText();
-						String ingredientes=textFieldIngrEnt.getText();
-						float precio= Float.valueOf(Float.parseFloat(textFieldPreEnt.getText()));
-						// String dificultad =rdbtnFcil.getText();//Como es radio button no se como cogerlo
-						String dificultad =textFieldDifEnt.getText();
-						String descripcion= textFieldDesEnt.getText();
-						String categoria=txtEntrantes.getText();
+			int idReceta= Integer.valueOf(Integer.parseInt(textFieldIdrecetaEn.getText()));
+			String nombre=textFieldNomEnt.getText();
+			String ingredientes=textFieldIngrEnt.getText();
+			float precio= Float.valueOf(Float.parseFloat(textFieldPreEnt.getText()));
+			// String dificultad =rdbtnFcil.getText();//Como es radio button no se como cogerlo
+			String dificultad =textFieldDifEnt.getText();
+			String descripcion= textFieldDesEnt.getText();
+			String categoria=txtEntrantes.getText();
 						
-						 //Llamamos al metodo insertar Receta
-                f.insertarReceta(idReceta, nombre, ingredientes, precio, dificultad, descripcion, categoria, comboBoxR);
+			//Llamamos al metodo insertar Receta
+            f.insertarReceta(idReceta, nombre, ingredientes, precio, dificultad, descripcion, categoria, comboBoxR);
+          //Me falta ponerle que lance un mensaje si se inserta ok
                
-					}
-				});
-				btnGuardar.setBounds(325, 256, 89, 23);
-				panel.add(btnGuardar);
+			}
+			});
+			btnGuardarEnt.setBounds(325, 256, 89, 23);
+			panelEntrantes.add(btnGuardarEnt);
+			
+			JLabel lblCatEnt = new JLabel("Categor\u00EDa");
+			lblCatEnt.setBounds(10, 6, 74, 14);
+			panelEntrantes.add(lblCatEnt);
 				
-				//****************   TAB CATEGORIA ENTRANTES ******************
-				JLabel lblCategora = new JLabel("Categor\u00EDa");
-				lblCategora.setBounds(10, 6, 74, 14);
-				panel.add(lblCategora);
+			txtEntrantes = new JTextField();
+			txtEntrantes.setEnabled(false);
+			txtEntrantes.setEditable(false);
+			txtEntrantes.setText("Entrantes");
+			txtEntrantes.setBounds(66, 3, 59, 20);
+			panelEntrantes.add(txtEntrantes);
+			txtEntrantes.setColumns(10);
 				
-				txtEntrantes = new JTextField();
-				txtEntrantes.setEnabled(false);
-				txtEntrantes.setEditable(false);
-				txtEntrantes.setText("Entrantes");
-				txtEntrantes.setBounds(66, 3, 86, 20);
-				panel.add(txtEntrantes);
-				txtEntrantes.setColumns(10);
+			JLabel lblIdrecetaEn = new JLabel("IdReceta");
+			lblIdrecetaEn.setBounds(135, 6, 66, 14);
+			panelEntrantes.add(lblIdrecetaEn);
 				
-				JLabel lblIdreceta = new JLabel("IdReceta");
-				lblIdreceta.setBounds(162, 6, 46, 14);
-				panel.add(lblIdreceta);
+			textFieldIdrecetaEn = new JTextField();
+			textFieldIdrecetaEn.setBounds(211, 3, 32, 20);
+			panelEntrantes.add(textFieldIdrecetaEn);
+			textFieldIdrecetaEn.setColumns(10);
 				
-				textFieldIdreceta = new JTextField();
-				textFieldIdreceta.setBounds(219, 3, 32, 20);
-				panel.add(textFieldIdreceta);
-				textFieldIdreceta.setColumns(10);
-				
-				textFieldDifEnt = new JTextField();
-				textFieldDifEnt.setBounds(85, 164, 86, 20);
-				panel.add(textFieldDifEnt);
-				textFieldDifEnt.setColumns(10);
+			textFieldDifEnt = new JTextField();
+			textFieldDifEnt.setBounds(85, 164, 86, 20);
+			panelEntrantes.add(textFieldDifEnt);
+			textFieldDifEnt.setColumns(10);
 		
-		JPanel panel_1 = new JPanel();
-		tabbedPane.addTab("Primeros", null, panel_1, null);
-		panel_1.setLayout(null);
+			//----------------------------------------
+			//           PANEL PRIMEROS
+			// --------------------------------------- 
+			
+		JPanel panelPr = new JPanel();
+		tabbedPane.addTab("Primeros", null, panelPr, null);
+		panelPr.setLayout(null);
 		
-		JLabel lblNombre_1 = new JLabel("Nombre");
-		lblNombre_1.setBounds(10, 37, 46, 14);
-		panel_1.add(lblNombre_1);
+		JLabel lblNombre_Pr = new JLabel("Nombre");
+		lblNombre_Pr.setBounds(10, 37, 46, 14);
+		panelPr.add(lblNombre_Pr);
 		
-		JLabel lblIngredientes_1 = new JLabel("Ingredientes");
-		lblIngredientes_1.setBounds(10, 83, 100, 14);
-		panel_1.add(lblIngredientes_1);
+		JLabel lblIngredientesPr = new JLabel("Ingredientes");
+		lblIngredientesPr.setBounds(10, 83, 100, 14);
+		panelPr.add(lblIngredientesPr);
 		
-		JLabel lblPrecio_1 = new JLabel("Precio");
-		lblPrecio_1.setBounds(10, 128, 46, 14);
-		panel_1.add(lblPrecio_1);
+		JLabel lblPrecioPr = new JLabel("Precio");
+		lblPrecioPr.setBounds(10, 128, 46, 14);
+		panelPr.add(lblPrecioPr);
 		
-		JLabel lblDificultad_1 = new JLabel("Dificultad");
-		lblDificultad_1.setBounds(10, 175, 76, 14);
-		panel_1.add(lblDificultad_1);
+		JLabel lblDificultadPr = new JLabel("Dificultad");
+		lblDificultadPr.setBounds(10, 175, 76, 14);
+		panelPr.add(lblDificultadPr);
 		
-		/*JRadioButton radioButtonf1 = new JRadioButton("F\u00E1cil");
-		radioButtonf1.setBounds(10, 196, 62, 23);
-		panel_1.add(radioButtonf1);
-		
-		JRadioButton rdbtnNormal_1 = new JRadioButton("Normal");
-		rdbtnNormal_1.setBounds(75, 196, 76, 23);
-		panel_1.add(rdbtnNormal_1);
-		
-		JRadioButton rdbtnDificil2 = new JRadioButton("Dificil");
-		rdbtnDificil2.setBounds(153, 196, 62, 23);
-		panel_1.add(rdbtnDificil2);*/
-		
-		JLabel lblDescripcin = new JLabel("Descripci\u00F3n");
-		lblDescripcin.setBounds(10, 226, 100, 14);
-		panel_1.add(lblDescripcin);
+		JLabel lblDescripPo = new JLabel("Descripci\u00F3n");
+		lblDescripPo.setBounds(10, 226, 100, 14);
+		panelPr.add(lblDescripPo);
 		
 		textFieldDescPr = new JTextField();
 		textFieldDescPr.setBounds(10, 251, 205, 43);
-		panel_1.add(textFieldDescPr);
+		panelPr.add(textFieldDescPr);
 		textFieldDescPr.setColumns(10);
 		
 		textFieldNomPr = new JTextField();
 		textFieldNomPr.setBounds(10, 52, 201, 20);
-		panel_1.add(textFieldNomPr);
+		panelPr.add(textFieldNomPr);
 		textFieldNomPr.setColumns(10);
 		
 		textFieldIngPr = new JTextField();
 		textFieldIngPr.setBounds(10, 108, 201, 20);
-		panel_1.add(textFieldIngPr);
+		panelPr.add(textFieldIngPr);
 		textFieldIngPr.setColumns(10);
 		
 		textFieldPrecPr = new JTextField();
 		textFieldPrecPr.setBounds(10, 144, 86, 20);
-		panel_1.add(textFieldPrecPr);
+		panelPr.add(textFieldPrecPr);
 		textFieldPrecPr.setColumns(10);
 		
 		JLabel label_Pr = new JLabel("");
 		label_Pr.setIcon(new ImageIcon("C:\\Users\\Eri\\git\\ErikaCebriaDam\\proyectoFinal\\src\\primeros.jpg"));
-		label_Pr.setBounds(221, 11, 242, 239);
-		panel_1.add(label_Pr);
+		label_Pr.setBounds(261, 11, 202, 239);
+		panelPr.add(label_Pr);
 		
-		JButton btnGuardar_1 = new JButton("Guardar");
-		btnGuardar_1.setBounds(309, 261, 89, 23);
-		panel_1.add(btnGuardar_1);
+		//BOTON GUARDAR PRIMEROS
+		JButton btnGuardarPr = new JButton("Guardar");
+		btnGuardarPr.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				int idReceta= Integer.valueOf(Integer.parseInt(textFieldIdRecetaPr.getText()));
+				String nombre=textFieldNomPr.getText();
+				String ingredientes=textFieldIngPr.getText();
+				float precio= Float.valueOf(Float.parseFloat(textFieldPrecPr.getText()));
+				// String dificultad =rdbtnFcil.getText();//Como es radio button no se como cogerlo
+				String dificultad =textFieldDifPr.getText();
+				String descripcion= textFieldDescPr.getText();
+				String categoria=txtCatPr.getText();
+				
+				 //Llamamos al metodo insertar Receta
+        f.insertarReceta(idReceta, nombre, ingredientes, precio, dificultad, descripcion, categoria, comboBoxR);
+      //Me falta ponerle que lance un mensaje si se inserta ok
+		}
+		});
+		btnGuardarPr.setBounds(309, 261, 89, 23);
+		panelPr.add(btnGuardarPr);
 		
-		JLabel lblCategora_1 = new JLabel("Categor\u00EDa");
-		lblCategora_1.setBounds(10, 14, 76, 14);
-		panel_1.add(lblCategora_1);
+		JLabel lblCatePr = new JLabel("Categor\u00EDa");
+		lblCatePr.setBounds(10, 14, 76, 14);
+		panelPr.add(lblCatePr);
 		
-		txtPrimeros = new JTextField();
-		txtPrimeros.setEnabled(false);
-		txtPrimeros.setEditable(false);
-		txtPrimeros.setText("Primeros");
-		txtPrimeros.setBounds(75, 11, 86, 20);
-		panel_1.add(txtPrimeros);
-		txtPrimeros.setColumns(10);
+		txtCatPr = new JTextField();
+		txtCatPr.setEnabled(false);
+		txtCatPr.setEditable(false);
+		txtCatPr.setText("Primeros");
+		txtCatPr.setBounds(75, 11, 61, 20);
+		panelPr.add(txtCatPr);
+		txtCatPr.setColumns(10);
 		
-		//************ TAB POSTRES ****************************
-		JPanel panel_2 = new JPanel();
-		tabbedPane.addTab("Postres", null, panel_2, null);
-		panel_2.setLayout(null);
+		JLabel lblIdRePr = new JLabel("IdReceta");
+		lblIdRePr.setBounds(146, 14, 54, 14);
+		panelPr.add(lblIdRePr);
+		
+		textFieldIdRecetaPr = new JTextField();
+		textFieldIdRecetaPr.setBounds(205, 11, 46, 20);
+		panelPr.add(textFieldIdRecetaPr);
+		textFieldIdRecetaPr.setColumns(10);
+		
+		textFieldDifPr = new JTextField();
+		textFieldDifPr.setColumns(10);
+		textFieldDifPr.setBounds(10, 195, 86, 20);
+		panelPr.add(textFieldDifPr);
+		
+				//----------------------------------------
+				//           PANEL POSTRES
+				// --------------------------------------- 
+		JPanel panelPo = new JPanel();
+		tabbedPane.addTab("Postres", null, panelPo, null);
+		panelPo.setLayout(null);
 		
 		JLabel label_Pos2 = new JLabel("");
 		label_Pos2.setBounds(243, 31, 220, 229);
 		label_Pos2.setIcon(new ImageIcon("C:\\Users\\Eri\\git\\ErikaCebriaDam\\proyectoFinal\\src\\descarga.jpg"));
-		panel_2.add(label_Pos2);
+		panelPo.add(label_Pos2);
 		
-		JLabel lblNombre_2 = new JLabel("Nombre");
-		lblNombre_2.setBounds(10, 38, 46, 14);
-		panel_2.add(lblNombre_2);
+		JLabel lblNombrePo = new JLabel("Nombre");
+		lblNombrePo.setBounds(10, 38, 46, 14);
+		panelPo.add(lblNombrePo);
 		
-		JLabel lblIngredientes_2 = new JLabel("Ingredientes");
-		lblIngredientes_2.setBounds(10, 84, 77, 14);
-		panel_2.add(lblIngredientes_2);
+		JLabel lblIngredientesPo = new JLabel("Ingredientes");
+		lblIngredientesPo.setBounds(10, 84, 77, 14);
+		panelPo.add(lblIngredientesPo);
 		
-		JLabel lblPrecio_2 = new JLabel("Precio");
-		lblPrecio_2.setBounds(10, 127, 46, 14);
-		panel_2.add(lblPrecio_2);
+		JLabel lblPrecioPo = new JLabel("Precio");
+		lblPrecioPo.setBounds(10, 127, 46, 14);
+		panelPo.add(lblPrecioPo);
 		
-		JLabel lblDificultad_2 = new JLabel("Dificultad");
-		lblDificultad_2.setBounds(10, 175, 46, 14);
-		panel_2.add(lblDificultad_2);
+		JLabel lblDificultadPo = new JLabel("Dificultad");
+		lblDificultadPo.setBounds(10, 175, 46, 14);
+		panelPo.add(lblDificultadPo);
 		
-		JLabel lblDescripcin_1 = new JLabel("Descripci\u00F3n");
-		lblDescripcin_1.setBounds(10, 226, 96, 14);
-		panel_2.add(lblDescripcin_1);
+		JLabel lblDescripcinPo = new JLabel("Descripci\u00F3n");
+		lblDescripcinPo.setBounds(10, 226, 96, 14);
+		panelPo.add(lblDescripcinPo);
 		
 //		JRadioButton rdbtnFcil_1 = new JRadioButton("F\u00E1cil");
 //		rdbtnFcil_1.setBounds(10, 196, 58, 23);
@@ -325,39 +360,70 @@ public class VTabRecetas extends JFrame {
 		
 		textFieldDesPos = new JTextField();
 		textFieldDesPos.setBounds(10, 251, 194, 43);
-		panel_2.add(textFieldDesPos);
+		panelPo.add(textFieldDesPos);
 		textFieldDesPos.setColumns(10);
 		
-		textFieldNomPos = new JTextField();
-		textFieldNomPos.setBounds(10, 53, 194, 20);
-		panel_2.add(textFieldNomPos);
-		textFieldNomPos.setColumns(10);
+		textFieldNomPo = new JTextField();
+		textFieldNomPo.setBounds(10, 53, 194, 20);
+		panelPo.add(textFieldNomPo);
+		textFieldNomPo.setColumns(10);
 		
-		textFieldIngPos = new JTextField();
-		textFieldIngPos.setBounds(10, 109, 194, 20);
-		panel_2.add(textFieldIngPos);
-		textFieldIngPos.setColumns(10);
+		textFieldIngPo = new JTextField();
+		textFieldIngPo.setBounds(10, 109, 194, 20);
+		panelPo.add(textFieldIngPo);
+		textFieldIngPo.setColumns(10);
 		
 		textFieldPrecioPos = new JTextField();
 		textFieldPrecioPos.setBounds(10, 152, 86, 20);
-		panel_2.add(textFieldPrecioPos);
+		panelPo.add(textFieldPrecioPos);
 		textFieldPrecioPos.setColumns(10);
 		
-		JButton btnGuardar_2 = new JButton("Guardar");
-		btnGuardar_2.setBounds(307, 271, 89, 23);
-		panel_2.add(btnGuardar_2);
+		
+		//BOTON GUARDAR POSTRES
+		JButton btnGuardarPo = new JButton("Guardar");
+		btnGuardarPo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int idReceta= Integer.valueOf(Integer.parseInt(textFieldIdRecetaPo.getText()));
+				String nombre=textFieldNomPo.getText();
+				String ingredientes=textFieldIngPo.getText();
+				float precio= Float.valueOf(Float.parseFloat(textFieldPrecioPos.getText()));
+				// String dificultad =rdbtnFcil.getText();//Como es radio button no se como cogerlo
+				String dificultad =textFieldDifPo.getText();
+				String descripcion= textFieldDesPos .getText();
+				String categoria=txtCatPo.getText();
+				//Llamamos al metodo insertar Receta
+		        f.insertarReceta(idReceta, nombre, ingredientes, precio, dificultad, descripcion, categoria, comboBoxR);
+		        //Me falta ponerle que lance un mensaje si se inserta ok
+			}
+		});
+		btnGuardarPo.setBounds(307, 271, 89, 23);
+		panelPo.add(btnGuardarPo);
 		
 		
-		JLabel lblCategora_2 = new JLabel("Categor\u00EDa");
-		lblCategora_2.setBounds(10, 11, 67, 14);
-		panel_2.add(lblCategora_2);
+		JLabel lblCatPo = new JLabel("Categor\u00EDa");
+		lblCatPo.setBounds(10, 11, 67, 14);
+		panelPo.add(lblCatPo);
 		
-		txtPostres = new JTextField();
-		txtPostres.setEnabled(false);
-		txtPostres.setEditable(false);
-		txtPostres.setText("Postres");
-		txtPostres.setBounds(80, 8, 86, 20);
-		panel_2.add(txtPostres);
-		txtPostres.setColumns(10);
+		txtCatPo = new JTextField();
+		txtCatPo.setEnabled(false);
+		txtCatPo.setEditable(false);
+		txtCatPo.setText("Postres");
+		txtCatPo.setBounds(66, 8, 55, 20);
+		panelPo.add(txtCatPo);
+		txtCatPo.setColumns(10);
+		
+		JLabel lblIdeRecetaPo = new JLabel("Id Receta");
+		lblIdeRecetaPo.setBounds(131, 11, 73, 14);
+		panelPo.add(lblIdeRecetaPo);
+		
+		textFieldIdRecetaPo = new JTextField();
+		textFieldIdRecetaPo.setBounds(200, 8, 46, 20);
+		panelPo.add(textFieldIdRecetaPo);
+		textFieldIdRecetaPo.setColumns(10);
+		
+		textFieldDifPo = new JTextField();
+		textFieldDifPo.setColumns(10);
+		textFieldDifPo.setBounds(10, 200, 86, 20);
+		panelPo.add(textFieldDifPo);
 	}
 }

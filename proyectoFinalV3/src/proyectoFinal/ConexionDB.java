@@ -72,7 +72,7 @@ public class ConexionDB {
 
 			}//cierro metodo leerRecetas
 			
-			//***********************  Leer receta filtrando categoria  ******************************
+			//***********************  Leer receta filtrando por nombre  ******************************
 			
 			public void leerRecetasN(String nombre){
 				//Aquí realizaremos la consulta y actualización del combobox
@@ -81,16 +81,17 @@ public class ConexionDB {
 				{			
 					// Preparamos la consulta
 					Statement instruccion = (Statement) conexion.createStatement();	 
-					// Se realiza la consulta
-					resBuscar = instruccion.executeQuery ("SELECT * FROM recetas WHERE categoria LIKE '"+nombre+"'");
+					// Se realiza la consulta 
+					
+					resBuscar = instruccion.executeQuery ("SELECT * FROM recetas WHERE '"+nombre+"'");
 					while(resBuscar.next()){
 						System.out.println("La receta es "+resBuscar.getString("nombre"));
 						JOptionPane.showMessageDialog(null, "La receta es "+resBuscar.getString("nombre"));
 					}
 				
 				} catch (Exception e){
-					System.out.println ("No hay nada en esa categoría");
-					JOptionPane.showMessageDialog( null, "No hay nada en esa categoría");
+					System.out.println ("No hay nada con ese nombre");
+					JOptionPane.showMessageDialog( null, "No hay nada con ese nombre");
 					}
 
 			}
@@ -106,6 +107,8 @@ public class ConexionDB {
 			            String insertBBDD = "INSERT INTO recetas (idReceta, nombre,ingredientes,precio,dificultad,descripcion,categoria)";    
 			            insertBBDD = insertBBDD + "VALUES ("+idReceta+",'"+nombre+"','"+ingredientes+"',"+precio+",'"+dificultad+"','"+descripcion+"','"+categoria+"' )";//los Strings '""' los int ""
 			            instruccion.executeUpdate(insertBBDD);
+			            System.out.println("Se ha insertado en la BD"+insertBBDD);
+			            JOptionPane.showMessageDialog( null, "Receta guardada en la Bd, cierra esta ventana y dale a Leer");
 			            //Actualizamos el comboBox
 			            //comboBoxR.updateUI();
 			           // leerRecetas(vtRecetas.comboBoxR);
